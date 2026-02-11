@@ -328,4 +328,66 @@
                     <a href="mailto:yadneshsaindane7@gmail.com" class="text-2xl md:text-3xl font-black hover:text-indigo-400 transition-colors tracking-tight underline underline-offset-8 decoration-indigo-500/30">yadneshsaindane7@gmail.com</a>
                     <div class="flex flex-wrap justify-center gap-4 mt-8">
                         <a href="https://github.com/yadneshsaindane7-boop" target="_blank" class="p-4 glass-card rounded-2xl hover:bg-indigo-600 transition-all" title="GitHub"><i data-lucide="github" class="w-6 h-6"></i></a>
-                 
+                        <a href="http://www.linkedin.com/in/yadneshsaindane0208" target="_blank" class="p-4 glass-card rounded-2xl hover:bg-blue-600 transition-all" title="LinkedIn"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+                        <a href="https://www.instagram.com/283march" target="_blank" class="p-4 glass-card rounded-2xl hover:bg-pink-600 transition-all" title="Instagram"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+                        <a href="https://wa.me/917219166304" target="_blank" class="p-4 glass-card rounded-2xl hover:bg-emerald-600 transition-all" title="WhatsApp"><i data-lucide="message-circle" class="w-6 h-6"></i></a>
+                        <a href="tel:+917219166304" class="p-4 glass-card rounded-2xl hover:bg-emerald-600 transition-all" title="Call Me"><i data-lucide="phone" class="w-6 h-6"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="absolute -top-32 -left-32 w-96 h-96 bg-indigo-600/10 blur-[100px] rounded-full"></div>
+            <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-emerald-600/10 blur-[100px] rounded-full"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 px-6 border-t border-slate-900 text-center">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center font-black text-white italic">Y</div>
+                <span class="text-lg font-black tracking-tighter uppercase">Yadnesh Saindane.</span>
+            </div>
+            <p class="text-slate-600 text-[10px] font-black uppercase tracking-[0.4em]">
+                © 2026 Hibro-Labs Production • Nashik, Maharashtra
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Optimized Reveal Function
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal");
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        // Run on scroll and load
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", () => {
+            // Short delay to ensure sections are ready
+            setTimeout(reveal, 100);
+            
+            // Safety: Force visible after 2 seconds if still hidden
+            setTimeout(() => {
+                document.querySelectorAll(".reveal").forEach(el => el.classList.add("active"));
+            }, 2000);
+        });
+
+        // Add smooth hover to skill cards
+        const skills = document.querySelectorAll('.skill-badge');
+        skills.forEach((skill, index) => {
+            skill.style.transitionDelay = `${index * 30}ms`;
+        });
+    </script>
+</body>
+</html>
