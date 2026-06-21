@@ -1,5 +1,5 @@
 /* =============================================================================
-   WAYFINDER — PORTFOLIO SCRIPT
+   WAYFINDER — PORTFOLIO SCRIPT (PRODUCTION STABLE)
    =============================================================================
    No external libraries. Everything below is vanilla JS, organized into
    small independent modules that each `init()` themselves at the bottom
@@ -59,9 +59,8 @@
   }
 
   /* ---------------------------------------------------------------------
-     MODULE: Custom cursor + canvas comet trail
-     Hidden automatically on touch devices via CSS; skip the JS work too.
-     --------------------------------------------------------------------- */
+      MODULE: Custom cursor + canvas comet trail
+      --------------------------------------------------------------------- */
   function initCursor() {
     if (isTouch) return;
     const cursor = document.getElementById('cursor');
@@ -87,6 +86,7 @@
         particles.push({ x: mx, y: my, life: 1 });
         if (particles.length > 40) particles.shift();
       }
+      
       const target = e.target;
       const interactive = target.closest('a, button, .orbit__node, input, textarea, .magnetic, .tilt');
       cursor.classList.toggle('is-active', !!interactive);
@@ -110,8 +110,6 @@
 
   /* ---------------------------------------------------------------------
      MODULE: Constellation nav
-     Draws the progress thread, highlights the active waypoint via
-     IntersectionObserver, and powers the mobile menu toggle.
      --------------------------------------------------------------------- */
   function initConstellationNav() {
     const sections = Array.from(document.querySelectorAll('main > section[id]'));
@@ -160,8 +158,6 @@
 
   /* ---------------------------------------------------------------------
      MODULE: Hero starfield + contour parallax
-     Generates floating particle nodes once, then lets the hero's contour
-     line and headline drift gently with the mouse (mouse-following effect).
      --------------------------------------------------------------------- */
   function initHero() {
     const field = document.getElementById('heroField');
@@ -187,7 +183,7 @@
 
     hero.addEventListener('mousemove', (e) => {
       const rect = hero.getBoundingClientRect();
-      const px = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 → 0.5
+      const px = (e.clientX - rect.left) / rect.width - 0.5;
       const py = (e.clientY - rect.top) / rect.height - 0.5;
 
       if (contour) {
@@ -201,8 +197,6 @@
 
   /* ---------------------------------------------------------------------
      MODULE: Reveal-on-scroll
-     Adds a small per-item stagger by reading sibling index within the
-     nearest grid/list parent, then toggles .is-visible once on screen.
      --------------------------------------------------------------------- */
   function initReveal() {
     const items = document.querySelectorAll('.reveal-up');
@@ -235,14 +229,16 @@
   }
 
   /* ---------------------------------------------------------------------
-     MODULE: Magnetic buttons
-     Nudges any .magnetic element toward the cursor within its bounds.
+     MODULE: Magnetic buttons (STABLE LINK EXCLUSION)
      --------------------------------------------------------------------- */
   function initMagnetic() {
     if (reduceMotion || isTouch) return;
     const els = document.querySelectorAll('.magnetic');
     els.forEach(el => {
       el.addEventListener('mousemove', (e) => {
+        // Safe check: If the cursor is floating over an anchor navigation text link, don't trap pointer event calculations
+        if (e.target.tagName.toLowerCase() === 'a') return;
+        
         const r = el.getBoundingClientRect();
         const x = e.clientX - r.left - r.width / 2;
         const y = e.clientY - r.top - r.height / 2;
@@ -255,13 +251,19 @@
   }
 
   /* ---------------------------------------------------------------------
-     MODULE: Tilt effect on cards
+     MODULE: Tilt effect on cards (STABLE LINK EXCLUSION)
      --------------------------------------------------------------------- */
   function initTilt() {
     if (reduceMotion || isTouch) return;
     const els = document.querySelectorAll('.tilt');
     els.forEach(el => {
       el.addEventListener('mousemove', (e) => {
+        // Safe check: If the user hovers/clicks inside a real active anchor link, halt coordinate modification loops
+        if (e.target.closest('a')) {
+          el.style.transform = '';
+          return;
+        }
+        
         const r = el.getBoundingClientRect();
         const px = (e.clientX - r.left) / r.width - 0.5;
         const py = (e.clientY - r.top) / r.height - 0.5;
@@ -275,11 +277,6 @@
 
   /* ---------------------------------------------------------------------
      MODULE: Contact form (Formspree)
-     Submits via fetch to the form's own `action` URL (set in index.html —
-     replace [YOUR_FORMSPREE_FORM_ID] there with your real Formspree form
-     ID) so no page reload is needed. Falls back to a normal HTML POST
-     automatically if JavaScript is disabled, since the <form> already has
-     a working action + method.
      --------------------------------------------------------------------- */
   function initContactForm() {
     const form = document.getElementById('contactForm');
@@ -318,7 +315,6 @@
       }
 
       if (!endpointConfigured) {
-        // Form ID hasn't been swapped in yet — tell the developer, not the visitor.
         setNote('Form is not connected yet — add your Formspree form ID in index.html.', 'error');
         console.warn('[contact form] Replace [YOUR_FORMSPREE_FORM_ID] in the form action with your real Formspree form ID.');
         return;
