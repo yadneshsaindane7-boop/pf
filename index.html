@@ -1,399 +1,564 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<!--
+  ===========================================================================
+  WAYFINDER — A CARTOGRAPHER'S PORTFOLIO
+  ===========================================================================
+  Customized for Yadnesh Saindane — CEO, Founder, Full-Stack Developer & Writer
+  ===========================================================================
+-->
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yadnesh Saindane | Full-Stack Developer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #020617;
-            color: #f8fafc;
-            overflow-x: hidden;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yadnesh Saindane — CEO & Full-Stack Developer</title>
+<meta name="description" content="Yadnesh Saindane — CEO & Founder of HibroLabProductions. TYBCA Student, Full-Stack Software Engineer, and Creative Writer based in Nashik.">
 
-        .glass-card {
-            background: rgba(15, 23, 42, 0.4);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+<!-- Fonts: Space Grotesk (display), Inter (body), JetBrains Mono (data/labels) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-        .glass-card:hover {
-            border-color: rgba(99, 102, 241, 0.4);
-            transform: translateY(-6px);
-            background: rgba(15, 23, 42, 0.6);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #818cf8 0%, #34d399 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background: #6366f1;
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .blob {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(16, 185, 129, 0.08) 100%);
-            filter: blur(100px);
-            border-radius: 50%;
-            z-index: -1;
-            animation: float 15s infinite alternate ease-in-out;
-        }
-
-        @keyframes float {
-            from { transform: translate(-5%, -5%) rotate(0deg); }
-            to { transform: translate(10%, 10%) rotate(15deg); }
-        }
-
-        .skill-badge {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .skill-badge:hover {
-            background: rgba(99, 102, 241, 0.1);
-            border-color: rgba(99, 102, 241, 0.3);
-            transform: scale(1.05);
-        }
-
-        .project-img {
-            transition: transform 0.6s ease;
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-        }
-
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #020617; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #4f46e5; }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Hover effect for the Hibro Labs Link */
-        .company-link {
-            transition: all 0.3s ease;
-        }
-        .company-link:hover {
-            color: #818cf8;
-            text-decoration-color: #818cf8;
-        }
-    </style>
+<link rel="stylesheet" href="style.css">
 </head>
-<body class="selection:bg-indigo-500/30">
+<body>
 
-    <!-- Background Decoration -->
-    <div class="blob top-[-10%] left-[-10%]"></div>
-    <div class="blob bottom-[5%] right-[-10%] !bg-emerald-500/5"></div>
+<!-- =======================================================================
+     PRELOADER
+     ======================================================================= -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <svg class="preloader__mark" viewBox="0 0 160 160" fill="none">
+    <circle class="preloader__ring" cx="80" cy="80" r="64" />
+    <text class="preloader__letters" x="80" y="98" text-anchor="middle">Y S</text>
+  </svg>
+  <p class="preloader__status"><span id="preloaderPct">0</span>% — charting the page</p>
+</div>
 
-    <!-- Header / Navbar -->
-    <nav class="fixed top-0 w-full z-50 px-6 py-6">
-        <div class="max-w-6xl mx-auto flex items-center justify-between glass-card px-8 py-4 rounded-3xl">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center font-black text-white italic shadow-lg shadow-indigo-500/20">Y</div>
-                <span class="text-xl font-extrabold tracking-tighter uppercase">Yadnesh.</span>
-            </div>
-            
-            <div class="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
-                <a href="#home" class="nav-link hover:text-white">Home</a>
-                <a href="#projects" class="nav-link hover:text-white">Projects</a>
-                <a href="#skills" class="nav-link hover:text-white">Stack</a>
-                <a href="#contact" class="nav-link hover:text-white">Contact</a>
-            </div>
+<!-- Fixed scroll-progress bar -->
+<div class="scrollbar" aria-hidden="true"><div class="scrollbar__fill" id="scrollFill"></div></div>
 
-            <a href="mailto:yadneshsaindane7@gmail.com" class="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-2xl text-xs font-bold uppercase tracking-widest transition-all shadow-lg shadow-indigo-500/20">
-                Let's Talk
-            </a>
+<!-- Custom cursor -->
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor__dot"></div>
+  <div class="cursor__ring"></div>
+</div>
+<canvas id="cursorTrail" aria-hidden="true"></canvas>
+
+<!-- =======================================================================
+     CONSTELLATION NAV
+     ======================================================================= -->
+<nav class="constellation" aria-label="Section navigation">
+  <svg class="constellation__line" width="2" height="100%" preserveAspectRatio="none" aria-hidden="true">
+    <line x1="1" y1="0" x2="1" y2="100%" class="constellation__track"/>
+    <line x1="1" y1="0" x2="1" y2="0" class="constellation__progress" id="constellationProgress"/>
+  </svg>
+  <ul class="constellation__list" id="constellationList">
+    <li><a href="#hero" data-label="Origin" class="is-active"><span class="constellation__dot"></span><span class="constellation__tag">Origin</span></a></li>
+    <li><a href="#about" data-label="Profile"><span class="constellation__dot"></span><span class="constellation__tag">Profile</span></a></li>
+    <li><a href="#skills" data-label="Stack"><span class="constellation__dot"></span><span class="constellation__tag">Stack</span></a></li>
+    <li><a href="#projects" data-label="Works"><span class="constellation__dot"></span><span class="constellation__tag">Works</span></a></li>
+    <li><a href="#achievements" data-label="Marks"><span class="constellation__dot"></span><span class="constellation__tag">Marks</span></a></li>
+    <li><a href="#contact" data-label="Signal"><span class="constellation__dot"></span><span class="constellation__tag">Signal</span></a></li>
+  </ul>
+</nav>
+
+<!-- Top utility bar -->
+<header class="topbar">
+  <a href="#hero" class="topbar__mark">Y S<span>·</span></a>
+  <button class="topbar__menu" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <ul>
+    <li><a href="#hero">01 — Origin</a></li>
+    <li><a href="#about">02 — Profile</a></li>
+    <li><a href="#skills">03 — Stack</a></li>
+    <li><a href="#projects">04 — Works</a></li>
+    <li><a href="#achievements">05 — Marks</a></li>
+    <li><a href="#contact">06 — Signal</a></li>
+  </ul>
+</div>
+
+<main id="top">
+
+  <!-- =====================================================================
+       1. HERO
+       ===================================================================== -->
+  <section class="hero" id="hero">
+    <div class="hero__field" id="heroField" aria-hidden="true"></div>
+
+    <svg class="hero__contour" viewBox="0 0 1200 800" preserveAspectRatio="none" aria-hidden="true">
+      <path id="contourPath" d="M-100,400 C200,250 400,550 700,380 C950,240 1100,460 1300,360" />
+    </svg>
+
+    <div class="hero__content">
+      <p class="hero__eyebrow reveal-up"><span class="eyebrow-dot"></span>CEO & Founder, HibroLabProductions</p>
+      <h1 class="hero__name reveal-up" data-delay="1">
+        <span class="hero__name-line" data-speed="0.4">Yadnesh Saindane</span>
+      </h1>
+      <p class="hero__tagline reveal-up" data-delay="2">Just a Nerd & Creative Storyteller</p>
+      <p class="hero__bio reveal-up" data-delay="3">A TYBCA student building complex digital tools by day and crafting fictional worlds through code, songs, and novels by night.</p>
+
+      <div class="hero__actions reveal-up" data-delay="4">
+        <a href="#projects" class="btn btn--primary magnetic">
+          <span>View Projects</span>
+        </a>
+        <a href="y_resume.pdf" class="btn btn--ghost magnetic" download>
+          <span>Download Resume</span>
+        </a>
+        <a href="#contact" class="btn btn--text magnetic">
+          <span>Contact Me</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H4M11 3V10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    
+  </section>
+
+  <!-- =====================================================================
+       2. ABOUT
+       ===================================================================== -->
+  <section class="about" id="about">
+    <div class="section-head reveal-up">
+      <span class="section-head__eyebrow">02 / Profile</span>
+      <h2 class="section-head__title">Field Notes</h2>
+    </div>
+
+    <div class="about__grid">
+      <div class="about__portrait reveal-up tilt">
+        <div class="about__coords">
+          <div><span>AGE</span><strong>22</strong></div>
+          <div><span>BASE</span><strong>Nashik, Maharashtra</strong></div>
+          <div><span>ROLE</span><strong>CEO & Founder</strong></div>
+          <div><span>COMPANY</span><strong><a href="#" style="color:var(--signal); text-decoration:underline;">HibroLabProductions</a></strong></div>
         </div>
-    </nav>
+      </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex flex-col items-center justify-center pt-24 px-6 relative">
-        <div class="max-w-5xl text-center">
-            <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-[10px] font-black uppercase tracking-[0.2em] mb-8">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
-                </span>
-                SYBCA Student • Nashik, India
-            </div>
-            <h1 class="text-6xl md:text-9xl font-black mb-8 tracking-tighter leading-[0.9]">
-                Yadnesh <br><span class="gradient-text">Saindane.</span>
-            </h1>
-            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12 font-medium">
-                Turning complex logic into intuitive experiences. Full-stack developer specializing in scalable web solutions via 
-                <a href="https://hibro-labs-production.vercel.app/" target="_blank" class="company-link text-white font-bold underline decoration-indigo-500/50">Hibro-Labs Production</a>.
-            </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
-                <a href="#projects" class="w-full sm:w-auto px-10 py-5 bg-white text-slate-950 font-black rounded-2xl hover:bg-indigo-50 transition-all flex items-center justify-center gap-3 uppercase text-xs tracking-widest">
-                    See Projects <i data-lucide="arrow-down" class="w-5 h-5"></i>
-                </a>
-                <a href="https://github.com/yadneshsaindane7-boop" target="_blank" class="w-full sm:w-auto px-10 py-5 glass-card font-black rounded-2xl hover:bg-white/5 transition-all flex items-center justify-center gap-3 uppercase text-xs tracking-widest text-white">
-                    <i data-lucide="github" class="w-5 h-5"></i> GitHub
-                </a>
-            </div>
+      <div class="about__copy">
+        <p class="about__text reveal-up">I am an engineered paradox: a highly technical full-stack developer obsessed with performance and logic, deeply intertwined with the soul of a creative writer. As the leader of HibroLabProductions, I engineer platforms that address genuine user problems, stretching from decentralized agricultural tools to secured academic vaults. Beyond the binary of my tech stack, I communicate through stories and music, pouring my extra energy into writing deep songs, scripts, and working on my debut novel.</p>
+
+        <dl class="about__facts">
+          <div class="reveal-up">
+            <dt>Education</dt>
+            <dd>Bachelor of Computer Applications (TYBCA), KTHM College (FY CGPA: 9.56 / SY: Result Awaited)</dd>
+          </div>
+          <div class="reveal-up">
+            <dt>Core Fields</dt>
+            <dd>Full-Stack Web/App Engineering, Data Structures & Algorithms, Creative Literature, Product Development</dd>
+          </div>
+          <div class="reveal-up">
+            <dt>Interests</dt>
+            <dd>System Architecture, Pop Culture, Novel Composition, Audio Engineering, Interface Minimalism</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       3. SKILLS
+       ===================================================================== -->
+  <section class="skills" id="skills">
+    <div class="section-head reveal-up">
+      <span class="section-head__eyebrow">03 / Stack</span>
+      <h2 class="section-head__title">Instruments Onboard</h2>
+      <p class="section-head__sub">A map of frameworks, systems, and logic languages utilized across production ecosystems.</p>
+    </div>
+
+    <div class="orbit-system reveal-up" id="orbitSystem">
+      <div class="orbit-system__core">
+        <span>Y S</span>
+      </div>
+
+      <!-- Ring 1 — Programming Languages & Foundations -->
+      <div class="orbit orbit--1" style="--ring:1">
+        <div class="orbit__path"></div>
+        <div class="orbit__node" style="--n:0" tabindex="0"><span class="orbit__label">Flutter & Dart</span></div>
+        <div class="orbit__node" style="--n:1" tabindex="0"><span class="orbit__label">Python</span></div>
+        <div class="orbit__node" style="--n:2" tabindex="0"><span class="orbit__label">Java</span></div>
+      </div>
+
+      <!-- Ring 2 — Engineering Core -->
+      <div class="orbit orbit--2" style="--ring:2">
+        <div class="orbit__path"></div>
+        <div class="orbit__node" style="--n:0" tabindex="0"><span class="orbit__label">C / C++</span></div>
+        <div class="orbit__node" style="--n:1" tabindex="0"><span class="orbit__label">DSA</span></div>
+      </div>
+
+      <!-- Ring 3 — Databases & Backend -->
+      <div class="orbit orbit--3" style="--ring:3">
+        <div class="orbit__path"></div>
+        <div class="orbit__node" style="--n:0" tabindex="0"><span class="orbit__label">Supabase</span></div>
+        <div class="orbit__node" style="--n:1" tabindex="0"><span class="orbit__label">Firebase & Firestore</span></div>
+      </div>
+
+      <!-- Ring 4 — Web Frameworks & Version Control -->
+      <div class="orbit orbit--4" style="--ring:4">
+        <div class="orbit__path"></div>
+        <div class="orbit__node" style="--n:0" tabindex="0"><span class="orbit__label">React</span></div>
+        <div class="orbit__node" style="--n:1" tabindex="0"><span class="orbit__label">SQL & PHP</span></div>
+        <div class="orbit__node" style="--n:2" tabindex="0"><span class="orbit__label">Git & GitHub</span></div>
+      </div>
+    </div>
+
+    <!-- Fallback accessibility list -->
+    <ul class="skills__flat" aria-hidden="true">
+      <li>Flutter & Dart</li><li>C / C++</li><li>Python</li>
+      <li>Data Structures & Algorithms</li><li>Java</li>
+      <li>Supabase</li><li>Firebase & Firestore</li>
+      <li>HTML, CSS & JavaScript</li><li>React</li><li>PHP & SQL</li><li>Git & GitHub</li>
+    </ul>
+
+    <div class="skills__other reveal-up">
+      <span class="skills__other-label">Also in the kit</span>
+      <div class="skills__chips">
+        <span class="chip">Creative Writing</span>
+        <span class="chip">Songwriting & Lyric Composition</span>
+        <span class="chip">Novel Structuring</span>
+        <span class="chip">System Architecture</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       4. PROJECTS
+       ===================================================================== -->
+  <section class="projects" id="projects">
+    <div class="section-head reveal-up">
+      <span class="section-head__eyebrow">04 / Works</span>
+      <h2 class="section-head__title">Expeditions</h2>
+      <p class="section-head__sub">Production applications and tools built individually and under HibroLabProductions.</p>
+    </div>
+
+    <div class="projects__grid">
+
+      <!-- PROJECT 1: Agriman -->
+      <article class="project tilt reveal-up">
+        <div class="project__media">
+          <svg class="ph-art" viewBox="0 0 480 300" aria-hidden="true"><rect width="480" height="300" fill="#0c0f20"/><path d="M0 220 L120 140 L240 200 L360 100 L480 170" stroke="var(--signal)" stroke-width="2" fill="none" opacity=".55"/><circle cx="120" cy="140" r="4" fill="var(--ember)"/></svg>
+          <span class="project__status project__status--done">Active</span>
         </div>
-        
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-slate-500">
-            <i data-lucide="chevron-down"></i>
+        <div class="project__body">
+          <span class="project__category">AgriTech Platform</span>
+          <h3 class="project__name">Agriman</h3>
+          <p class="project__desc">A comprehensive digital farming hub designed to maximize crop yield for modern farmers, offering intelligent task management, regional planning data, and ecological optimizations.</p>
+          <ul class="project__features">
+            <li>Dynamic Farm Metrics</li><li>Crop Management</li><li>Resource Optimizer</li>
+          </ul>
+          <div class="project__stack">Flutter, Dart, Firebase, Open-Meteo API</div>
+          <div class="project__links">
+            <a href="https://github.com/yadneshaindane7-boop" class="btn btn--small magnetic">Code</a>
+            <a href="#" class="btn btn--small btn--ghost magnetic">Live Demo</a>
+          </div>
         </div>
-    </section>
+      </article>
 
-    <!-- Tech Stack / Skills -->
-    <section id="skills" class="reveal py-24 px-6 max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl font-black mb-4 uppercase tracking-tighter">My <span class="text-indigo-500">Tech Stack</span></h2>
-            <p class="text-slate-500 text-sm uppercase tracking-widest font-bold">Languages & Technologies</p>
+      <!-- PROJECT 2: Cowcare -->
+      <article class="project tilt reveal-up">
+        <div class="project__media">
+          <svg class="ph-art" viewBox="0 0 480 300" aria-hidden="true"><rect width="480" height="300" fill="#0c0f20"/><circle cx="240" cy="150" r="70" fill="none" stroke="var(--ember)" stroke-width="2" opacity=".5"/><circle cx="240" cy="150" r="30" fill="none" stroke="var(--signal)" stroke-width="2" opacity=".7"/></svg>
+          <span class="project__status project__status--done">Active</span>
         </div>
-        
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            <div class="skill-badge p-6 rounded-3xl flex flex-col items-center gap-3">
-                <i data-lucide="code" class="w-8 h-8 text-blue-400"></i>
-                <span class="font-bold text-sm tracking-tight">C / C++</span>
-            </div>
-            <div class="skill-badge p-6 rounded-3xl flex flex-col items-center gap-3">
-                <i data-lucide="layout" class="w-8 h-8 text-orange-400"></i>
-                <span class="font-bold text-sm tracking-tight">HTML / CSS</span>
-            </div>
-            <div class="skill-badge p-6 rounded-3xl flex flex-col items-center gap-3">
-                <i data-lucide="file-json" class="w-8 h-8 text-yellow-400"></i>
-                <span class="font-bold text-sm tracking-tight">JavaScript</span>
-            </div>
-            <div class="skill-badge p-6 rounded-3xl flex flex-col items-center gap-3">
-                <i data-lucide="smartphone" class="w-8 h-8 text-sky-400"></i>
-                <span class="font-bold text-sm tracking-tight">Flutter / Dart</span>
-            </div>
-            <div class="skill-badge p-6 rounded-3xl flex flex-col items-center gap-3">
-                <i data-lucide="terminal" class="w-8 h-8 text-blue-300"></i>
-                <span class="font-bold text-sm tracking-tight">Python</span>
-            </div>
-            <div class="skill-badge p-6 rounded-3xl flex flex-col items-center gap-3">
-                <i data-lucide="database" class="w-8 h-8 text-emerald-400"></i>
-                <span class="font-bold text-sm tracking-tight">SQL</span>
-            </div>
-            <div class="skill-badge p-6 rounded-3xl flex flex-col items-center gap-3">
-                <i data-lucide="layers" class="w-8 h-8 text-indigo-400"></i>
-                <span class="font-bold text-sm tracking-tight">Data Structures</span>
-            </div>
-            <div class="skill-badge p-6 rounded-3xl flex flex-col items-center gap-3">
-                <i data-lucide="git-branch" class="w-8 h-8 text-red-400"></i>
-                <span class="font-bold text-sm tracking-tight">Git</span>
-            </div>
-            <div class="skill-badge p-6 rounded-3xl flex flex-col items-center gap-3">
-                <i data-lucide="server" class="w-8 h-8 text-white"></i>
-                <span class="font-bold text-sm tracking-tight">PHP</span>
-            </div>
-            <div class="skill-badge p-6 rounded-3xl flex flex-col items-center gap-3">
-                <i data-lucide="pen-tool" class="w-8 h-8 text-white"></i>
-                <span class="font-bold text-sm tracking-tight">Writer</span>
-            </div>
+        <div class="project__body">
+          <span class="project__category">Livestock Operations</span>
+          <h3 class="project__name">Cowcare</h3>
+          <p class="project__desc">A management system dedicated to cattle health optimization. Tracks medical logs, nutritional requirements, vaccination schedules, and production trends seamlessly.</p>
+          <ul class="project__features">
+            <li>Health Diagnostics</li><li>Nutrition Tracking</li><li>Vaccine Logs</li>
+          </ul>
+          <div class="project__stack">React, Firebase, Tailwind CSS</div>
+          <div class="project__links">
+            <a href="https://github.com/yadneshaindane7-boop" class="btn btn--small magnetic">Code</a>
+            <a href="#" class="btn btn--small btn--ghost magnetic">Live Demo</a>
+          </div>
         </div>
-    </section>
+      </article>
 
-    <!-- Projects Section -->
-    <section id="projects" class="reveal py-24 px-6 max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
-            <div class="max-w-xl">
-                <h2 class="text-5xl font-black mb-6 uppercase tracking-tighter">My <span class="text-indigo-500">Projects</span></h2>
-                <p class="text-slate-400 font-medium italic">Building tools that matter for the community.</p>
-            </div>
-            <a href="https://github.com/yadneshsaindane7-boop" target="_blank" class="bg-indigo-600/10 hover:bg-indigo-600 text-indigo-400 hover:text-white px-8 py-4 rounded-2xl text-xs font-bold uppercase tracking-widest transition-all">
-                View GitHub Repos
-            </a>
+      <!-- PROJECT 3: Local Market -->
+      <article class="project tilt reveal-up">
+        <div class="project__media">
+          <svg class="ph-art" viewBox="0 0 480 300" aria-hidden="true"><rect width="480" height="300" fill="#0c0f20"/><rect x="120" y="80" width="240" height="140" rx="6" fill="none" stroke="var(--signal)" stroke-width="2" opacity=".5"/><line x1="120" y1="120" x2="360" y2="120" stroke="var(--ember)" stroke-width="1.4" opacity=".5"/></svg>
+          <span class="project__status project__status--done">Active</span>
+        </div>
+        <div class="project__body">
+          <span class="project__category">E-Commerce Ecosystem</span>
+          <h3 class="project__name">Local Market</h3>
+          <p class="project__desc">An inclusive retail engine enabling neighborhood artisans and independent small sellers to list, manage inventory, and securely sell products straight to regional consumers.</p>
+          <ul class="project__features">
+            <li>Merchant Dashboard</li><li>Secure Checkouts</li><li>Localized Filters</li>
+          </ul>
+          <div class="project__stack">PHP, SQL, Javascript, HTML/CSS</div>
+          <div class="project__links">
+            <a href="https://github.com/yadneshaindane7-boop" class="btn btn--small magnetic">Code</a>
+            <a href="#" class="btn btn--small btn--ghost magnetic">Live Demo</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 4: BCA Vault -->
+      <article class="project tilt reveal-up">
+        <div class="project__media">
+          <svg class="ph-art" viewBox="0 0 480 300" aria-hidden="true"><rect width="480" height="300" fill="#0c0f20"/><path d="M60 240 L160 60 L260 240 L360 60 L460 240" stroke="var(--signal)" stroke-width="2" fill="none" opacity=".45"/></svg>
+          <span class="project__status project__status--done">Active</span>
+        </div>
+        <div class="project__body">
+          <span class="project__category">Secure EdTech Infrastructure</span>
+          <h3 class="project__name">BCA Vault</h3>
+          <p class="project__desc">An authorized-access repository crafted specifically for computer science undergraduates to store, preserve, and locate essential files, lecture notes, and critical review materials.</p>
+          <ul class="project__features">
+            <li>Role-Based Access</li><li>Document Viewer</li><li>Fast Index Querying</li>
+          </ul>
+          <div class="project__stack">Supabase, React, Express, Node.js</div>
+          <div class="project__links">
+            <a href="https://github.com/yadneshaindane7-boop" class="btn btn--small magnetic">Code</a>
+            <a href="#" class="btn btn--small btn--ghost magnetic">Live Demo</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 5: Anitale -->
+      <article class="project tilt reveal-up">
+        <div class="project__media">
+          <svg class="ph-art" viewBox="0 0 480 300" aria-hidden="true"><circle cx="160" cy="170" r="50" fill="none" stroke="var(--ember)" stroke-width="2" opacity=".5"/><circle cx="320" cy="130" r="50" fill="none" stroke="var(--signal)" stroke-width="2" opacity=".5"/></svg>
+          <span class="project__status project__status--done">Active</span>
+        </div>
+        <div class="project__body">
+          <span class="project__category">Entertainment Tracking Journal</span>
+          <h3 class="project__name">Anitale</h3>
+          <p class="project__desc">A detailed metadata dashboard and digital diary designed for animation aficionados. Keep precise track of completed watch-lists, logs, scores, and personal text reflections.</p>
+          <ul class="project__features">
+            <li>Dynamic Watchlist</li><li>Personal Scoring</li><li>Collection Metrics</li>
+          </ul>
+          <div class="project__stack">React, Supabase, TailWind CSS</div>
+          <div class="project__links">
+            <a href="https://github.com/yadneshaindane7-boop" class="btn btn--small magnetic">Code</a>
+            <a href="#" class="btn btn--small btn--ghost magnetic">Live Demo</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 6: Quizzer -->
+      <article class="project tilt reveal-up">
+        <div class="project__media">
+          <svg class="ph-art" viewBox="0 0 480 300" aria-hidden="true"><path d="M40 150 H440" stroke="var(--signal)" stroke-width="1.4" opacity=".4"/><path d="M240 30 V270" stroke="var(--ember)" stroke-width="1.4" opacity=".4"/><circle cx="240" cy="150" r="46" fill="none" stroke="var(--signal)" stroke-width="2" opacity=".6"/></svg>
+          <span class="project__status project__status--done">Active</span>
+        </div>
+        <div class="project__body">
+          <span class="project__category">Interactive Media Architecture</span>
+          <h3 class="project__name">Quizzer</h3>
+          <p class="project__desc">A high-fidelity quiz mechanics game engineered for pop culture and media nerds. Features complex time-trials, high score calculations, and robust multi-category data structures.</p>
+          <ul class="project__features">
+            <li>Real-time Countdown</li><li>Leaderboards</li><li>State Persistence</li>
+          </ul>
+          <div class="project__stack">Java, Android SDK / OOP Design Patterns</div>
+          <div class="project__links">
+            <a href="https://github.com/yadneshaindane7-boop" class="btn btn--small magnetic">Code</a>
+            <a href="#" class="btn btn--small btn--ghost magnetic">Live Demo</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 7: Chatbird -->
+      <article class="project tilt reveal-up">
+        <div class="project__media">
+          <svg class="ph-art" viewBox="0 0 480 300" aria-hidden="true"><rect width="480" height="300" fill="#0b0d1a"/><circle cx="120" cy="150" r="10" fill="var(--signal)" opacity=".4"/><circle cx="360" cy="150" r="10" fill="var(--ember)" opacity=".4"/><path d="M130 150 H350" stroke="currentColor" stroke-dasharray="4 4" opacity=".5"/></svg>
+          <span class="project__status project__status--progress">In Development</span>
+        </div>
+        <div class="project__body">
+          <span class="project__category">Communication Platform</span>
+          <h3 class="project__name">Chatbird</h3>
+          <p class="project__desc">A real-time messaging web interface ensuring instantaneous state mutations, multi-room chat functionality, and custom friend connections.</p>
+          <ul class="project__features">
+            <li>Reactive Messaging</li><li>Firestore Observers</li><li>Clean Session Auth</li>
+          </ul>
+          <div class="project__stack">React, Firebase Firestore, JS</div>
+          <div class="project__links">
+            <a href="https://github.com/yadneshaindane7-boop" class="btn btn--small magnetic">Code</a>
+            <a href="#" class="btn btn--small btn--ghost magnetic">Live Demo</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 8: Custom Web Browser -->
+      <article class="project tilt reveal-up">
+        <div class="project__media">
+          <svg class="ph-art" viewBox="0 0 480 300" aria-hidden="true"><rect width="480" height="300" fill="#0b0d1a"/><path d="M140 80 H340 V220 H140 Z" fill="none" stroke="var(--signal)" stroke-width="1.5"/><circle cx="160" cy="100" r="4" fill="var(--ember)"/></svg>
+          <span class="project__status project__status--progress">In Development</span>
+        </div>
+        <div class="project__body">
+          <span class="project__category">Systems & Network Utility</span>
+          <h3 class="project__name">Hyperion Browser</h3>
+          <p class="project__desc">An experimental custom web client optimizing asset caching, tab isolation, and memory overhead footprints akin to lightweight modern browsers.</p>
+          <ul class="project__features">
+            <li>Memory Management</li><li>Sandbox Rendering</li><li>Optimized Caching</li>
+          </ul>
+          <div class="project__stack">Python, PyQt / C++ Engine Core</div>
+          <div class="project__links">
+            <a href="https://github.com/yadneshaindane7-boop" class="btn btn--small magnetic">Code</a>
+            <a href="#" class="btn btn--small btn--ghost magnetic">Live Demo</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 9: Hibro Editor -->
+      <article class="project tilt reveal-up">
+        <div class="project__media">
+          <svg class="ph-art" viewBox="0 0 480 300" aria-hidden="true"><rect width="480" height="300" fill="#0b0d1a"/><line x1="80" y1="60" x2="200" y2="60" stroke="var(--signal)" stroke-width="2"/><line x1="80" y1="100" x2="300" y2="100" stroke="currentColor"/><line x1="80" y1="140" x2="240" y2="140" stroke="var(--ember)"/></svg>
+          <span class="project__status project__status--progress">In Development</span>
+        </div>
+        <div class="project__body">
+          <span class="project__category">Desktop Utility Software</span>
+          <h3 class="project__name">Hibro Editor</h3>
+          <p class="project__desc">A powerful, raw text editing application styled with developer productivity configurations, high speed file parsing, and zero bloating footprint.</p>
+          <ul class="project__features">
+            <li>Syntax Structuring</li><li>Multi-Tab Buffers</li><li>High IO File Read</li>
+          </ul>
+          <div class="project__stack">C++, WxWidgets / Java Swing Core</div>
+          <div class="project__links">
+            <a href="https://github.com/yadneshaindane7-boop" class="btn btn--small magnetic">Code</a>
+            <a href="#" class="btn btn--small btn--ghost magnetic">Live Demo</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 10: Custom Core AI -->
+      <article class="project tilt reveal-up">
+        <div class="project__media">
+          <svg class="ph-art" viewBox="0 0 480 300" aria-hidden="true"><rect width="480" height="300" fill="#0b0d1a"/><circle cx="240" cy="150" r="50" fill="none" stroke="var(--signal)" stroke-width="1.5"/><path d="M240 100 V200 M190 150 H290" stroke="var(--ember)" stroke-width="1"/></svg>
+          <span class="project__status project__status--progress">Training Model</span>
+        </div>
+        <div class="project__body">
+          <span class="project__category">Machine Learning Architecture</span>
+          <h3 class="project__name">Core AI Engine</h3>
+          <p class="project__desc">An internal neural agent in deployment stages. Currently being trained with custom text corpuses to handle predictive heuristics and natural context logic mapping.</p>
+          <ul class="project__features">
+            <li>Custom Tokenizer</li><li>Heuristic Mapping</li><li>Weight Iterations</li>
+          </ul>
+          <div class="project__stack">Python, NumPy, PyTorch Foundations</div>
+          <div class="project__links">
+            <a href="https://github.com/yadneshaindane7-boop" class="btn btn--small magnetic">Code</a>
+            <a href="#" class="btn btn--small btn--ghost magnetic">Live Demo</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       5. ACHIEVEMENTS
+       ===================================================================== -->
+  <section class="achievements" id="achievements">
+    <div class="section-head reveal-up">
+      <span class="section-head__eyebrow">05 / Marks</span>
+      <h2 class="section-head__title">Marks on the Map</h2>
+    </div>
+
+    <div class="achievements__grid">
+      <div class="achievement-card reveal-up">
+        <svg class="achievement-card__icon" viewBox="0 0 40 40" fill="none"><path d="M20 4L24.5 15.2L36 17L27.5 24.8L29.7 36L20 30.2L10.3 36L12.5 24.8L4 17L15.5 15.2L20 4Z" stroke="var(--gold)" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        <h3>2nd Runner Up</h3>
+        <p>Recognized for outstanding achievement at the prestigious 4th International Marathi Literature Summit.</p>
+        <time>2026</time>
+      </div>
+      <div class="achievement-card reveal-up">
+        <svg class="achievement-card__icon" viewBox="0 0 40 40" fill="none"><path d="M20 4L24.5 15.2L36 17L27.5 24.8L29.7 36L20 30.2L10.3 36L12.5 24.8L4 17L15.5 15.2L20 4Z" stroke="var(--gold)" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        <h3>2nd Place Winner</h3>
+        <p>Secured high ranking positioning in the highly competitive mathematical and computing BC Square Competition.</p>
+        <time>Recent</time>
+      </div>
+      <div class="achievement-card reveal-up">
+        <svg class="achievement-card__icon" viewBox="0 0 40 40" fill="none"><path d="M20 4L24.5 15.2L36 17L27.5 24.8L29.7 36L20 30.2L10.3 36L12.5 24.8L4 17L15.5 15.2L20 4Z" stroke="var(--gold)" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        <h3>Certificate of Participation</h3>
+        <p>Successfully designed software solutions during the fast-paced, high-intensity Zomathon Hackathon challenge.</p>
+        <time>Recent</time>
+      </div>
+      <div class="achievement-card reveal-up">
+        <svg class="achievement-card__icon" viewBox="0 0 40 40" fill="none"><path d="M20 4L24.5 15.2L36 17L27.5 24.8L29.7 36L20 30.2L10.3 36L12.5 24.8L4 17L15.5 15.2L20 4Z" stroke="var(--gold)" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        <h3>Certificate of Participation</h3>
+        <p>Explored cloud systems and intelligence training configurations inside the Microsoft AI Hackathon.</p>
+        <time>Recent</time>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       6. CONTACT
+       ===================================================================== -->
+  <section class="contact" id="contact">
+    <div class="section-head reveal-up">
+      <span class="section-head__eyebrow">06 / Signal</span>
+      <h2 class="section-head__title">Send a Signal</h2>
+      <p class="section-head__sub">Fill in the form, or reach out directly through any channel below.</p>
+    </div>
+
+    <div class="contact__grid">
+      <form class="contact__form reveal-up" id="contactForm" novalidate action="https://formspree.io/f/xlgyrlpy" method="POST">
+        <div class="field">
+          <input type="text" id="cf-name" name="name" required placeholder=" ">
+          <label for="cf-name">Your name</label>
+        </div>
+        <div class="field">
+          <input type="email" id="cf-email" name="email" required placeholder=" ">
+          <label for="cf-email">Your email</label>
+        </div>
+        <div class="field">
+          <input type="text" id="cf-subject" name="subject" placeholder=" ">
+          <label for="cf-subject">Subject</label>
+        </div>
+        <div class="field">
+          <textarea id="cf-message" name="message" rows="4" required placeholder=" "></textarea>
+          <label for="cf-message">Message</label>
+        </div>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+        <button type="submit" class="btn btn--primary magnetic" id="contactSubmit">
+          <span class="btn__label">Transmit Message</span>
+        </button>
+        <p class="contact__form-note" id="contactNote" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="contact__details reveal-up">
+        <a class="contact__line" href="mailto:yadneshsaindane7@gmail.com">
+          <span>Email</span><strong>yadneshsaindane7@gmail.com</strong>
+        </a>
+        <a class="contact__line" href="tel:+917219166304">
+          <span>Phone</span><strong>+91 7219166304</strong>
+        </a>
+        <div class="contact__line">
+          <span>Based in</span><strong>Nashik, MH, India</strong>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Project 1: Agri-Man -->
-            <div class="glass-card p-6 rounded-[32px] group">
-                <div class="overflow-hidden rounded-2xl aspect-video bg-slate-800 mb-6 relative">
-                    <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&q=80&w=800" alt="Agri-Man" class="project-img opacity-50 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent"></div>
-                </div>
-                <h3 class="text-2xl font-black mb-2 tracking-tight">Agri-Man</h3>
-                <p class="text-slate-400 text-sm mb-6 leading-relaxed">Localized platform for farmers in Nashik/Maharashtra with Marathi language support.</p>
-                <div class="flex flex-wrap gap-2 mt-auto">
-                    <span class="px-3 py-1 bg-indigo-500/10 text-indigo-400 rounded-lg text-[10px] font-black uppercase tracking-wider">Solution</span>
-                    <a href="https://agri-man.vercel.app/" target="_blank" class="px-3 py-1 bg-white/10 hover:bg-white/20 text-white rounded-lg text-[10px] font-black uppercase flex items-center gap-1 ml-auto">Live <i data-lucide="external-link" class="w-3 h-3"></i></a>
-                </div>
-            </div>
-
-            <!-- Project 2: BCA Vault -->
-            <div class="glass-card p-6 rounded-[32px] group">
-                <div class="overflow-hidden rounded-2xl aspect-video bg-slate-800 mb-6 relative">
-                    <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=800" alt="BCA Vault" class="project-img opacity-50 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent"></div>
-                </div>
-                <h3 class="text-2xl font-black mb-2 tracking-tight">BCA Vault</h3>
-                <p class="text-slate-400 text-sm mb-6 leading-relaxed">Digital repository for BCA students to access study material, IMPs, and previous notes.</p>
-                <div class="flex flex-wrap gap-2 mt-auto">
-                    <span class="px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-lg text-[10px] font-black uppercase tracking-wider">Education</span>
-                    <a href="https://bca-for-friends.vercel.app/" target="_blank" class="px-3 py-1 bg-white/10 hover:bg-white/20 text-white rounded-lg text-[10px] font-black uppercase flex items-center gap-1 ml-auto">Live <i data-lucide="external-link" class="w-3 h-3"></i></a>
-                </div>
-            </div>
-
-            <!-- Project 3: Anitale -->
-            <div class="glass-card p-6 rounded-[32px] group">
-                <div class="overflow-hidden rounded-2xl aspect-video bg-slate-800 mb-6 relative">
-                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=800" alt="Anitale" class="project-img opacity-50 group-hover:opacity-100">
-                </div>
-                <h3 class="text-2xl font-black mb-2 tracking-tight">Anitale</h3>
-                <p class="text-slate-400 text-sm mb-6 leading-relaxed">Immersive storytelling experience focused on fluid animations and narrative design.</p>
-                <div class="flex flex-wrap gap-2 mt-auto">
-                    <span class="px-3 py-1 bg-purple-500/10 text-purple-400 rounded-lg text-[10px] font-black uppercase tracking-wider">Immersive</span>
-                    <a href="https://ani-tale.vercel.app/" target="_blank" class="px-3 py-1 bg-white/10 hover:bg-white/20 text-white rounded-lg text-[10px] font-black uppercase flex items-center gap-1 ml-auto">Live <i data-lucide="external-link" class="w-3 h-3"></i></a>
-                </div>
-            </div>
-
-            <!-- Project 4: Quizzer -->
-            <div class="glass-card p-6 rounded-[32px] group">
-                <div class="overflow-hidden rounded-2xl aspect-video bg-slate-800 mb-6 relative">
-                    <img src="https://images.unsplash.com/photo-1606326666333-47992022416b?auto=format&fit=crop&q=80&w=800" alt="Quizzer" class="project-img opacity-50 group-hover:opacity-100">
-                </div>
-                <h3 class="text-2xl font-black mb-2 tracking-tight">Quizzer</h3>
-                <p class="text-slate-400 text-sm mb-6 leading-relaxed">Interactive quiz game featuring category selection and dynamic scoring systems.</p>
-                <div class="flex flex-wrap gap-2 mt-auto">
-                    <span class="px-3 py-1 bg-yellow-500/10 text-yellow-400 rounded-lg text-[10px] font-black uppercase tracking-wider">Game</span>
-                    <a href="https://quizzer-phi-pearl.vercel.app/" target="_blank" class="px-3 py-1 bg-white/10 hover:bg-white/20 text-white rounded-lg text-[10px] font-black uppercase flex items-center gap-1 ml-auto">Live <i data-lucide="external-link" class="w-3 h-3"></i></a>
-                </div>
-            </div>
-
-            <!-- Project 5: Snakey -->
-            <div class="glass-card p-6 rounded-[32px] group">
-                <div class="overflow-hidden rounded-2xl aspect-video bg-slate-800 mb-6 relative">
-                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800" alt="Snakey" class="project-img opacity-50 group-hover:opacity-100">
-                </div>
-                <h3 class="text-2xl font-black mb-2 tracking-tight">Snakey</h3>
-                <p class="text-slate-400 text-sm mb-6 leading-relaxed">Modern web recreation of the classic snake game using JS and HTML5 Canvas API.</p>
-                <div class="flex flex-wrap gap-2 mt-auto">
-                    <span class="px-3 py-1 bg-slate-500/10 text-slate-400 rounded-lg text-[10px] font-black uppercase tracking-wider">Canvas API</span>
-                    <a href="https://snakey283.vercel.app/" target="_blank" class="px-3 py-1 bg-white/10 hover:bg-white/20 text-white rounded-lg text-[10px] font-black uppercase flex items-center gap-1 ml-auto">Live <i data-lucide="external-link" class="w-3 h-3"></i></a>
-                </div>
-            </div>
-
-            <!-- Project 6: CowCare -->
-            <div class="glass-card p-6 rounded-[32px] group">
-                <div class="overflow-hidden rounded-2xl aspect-video bg-slate-800 mb-6 relative">
-                    <img src="https://images.unsplash.com/photo-1546445317-29f4545e9d53?auto=format&fit=crop&q=80&w=800" alt="CowCare" class="project-img opacity-50 group-hover:opacity-100">
-                </div>
-                <h3 class="text-2xl font-black mb-2 tracking-tight">CowCare</h3>
-                <p class="text-slate-400 text-sm mb-6 leading-relaxed">Application conceptualized for livestock management and health tracking for rural users.</p>
-                <div class="flex flex-wrap gap-2 mt-auto">
-                    <span class="px-3 py-1 bg-red-500/10 text-red-400 rounded-lg text-[10px] font-black uppercase tracking-wider">Healthcare</span>
-                    <a href="https://cowcare.infinityfreeapp.com/" target="_blank" class="px-3 py-1 bg-white/10 hover:bg-white/20 text-white rounded-lg text-[10px] font-black uppercase flex items-center gap-1 ml-auto">Live <i data-lucide="external-link" class="w-3 h-3"></i></a>
-                </div>
-            </div>
+        <div class="socials">
+          <a href="http://www.linkedin.com/in/yadneshkumar0208" class="socials__link magnetic" aria-label="LinkedIn" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.83 0-2.1 1.43-2.1 2.9V21h-4V9z"/></svg>
+          </a>
+          <a href="https://github.com/yadneshaindane7-boop" class="socials__link magnetic" aria-label="GitHub" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 015.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.8 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.07.78 2.15v3.19c0 .3.21.66.79.55A11.5 11.5 0 0023.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/283march" class="socials__link magnetic" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 2 .25 2.7.53.7.27 1.3.65 1.9 1.25.6.6.97 1.2 1.25 1.9.28.7.47 1.5.53 2.7.06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.25 2-.53 2.7a5.2 5.2 0 01-1.25 1.9 5.2 5.2 0 01-1.9 1.25c-.7.28-1.5.47-2.7.53-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-2-.25-2.7-.53a5.2 5.2 0 01-1.9-1.25 5.2 5.2 0 01-1.25-1.9c-.28-.7-.47-1.5-.53-2.7C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.25-2 .53-2.7.27-.7.65-1.3 1.25-1.9a5.2 5.2 0 011.9-1.25c.7-.28 1.5-.47 2.7-.53C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.15 0-3.52 0-4.76.07-1 .05-1.6.22-1.97.36-.5.2-.85.42-1.22.8-.38.37-.6.72-.8 1.22-.14.37-.31.97-.36 1.97C2.8 9.48 2.8 9.85 2.8 13s0 3.52.07 4.76c.05 1 .22 1.6.36 1.97.2.5.42.85.8 1.22.37.38.72.6 1.22.8.37.14.97.31 1.97.36 1.24.06 1.61.07 4.76.07s3.52 0 4.76-.07c1-.05 1.6-.22 1.97-.36.5-.2.85-.42 1.22-.8.38-.37.6-.72.8-1.22.14-.37.31-.97.36-1.97.06-1.24.07-1.61.07-4.76s0-3.52-.07-4.76c-.05-1-.22-1.6-.36-1.97a3.4 3.4 0 00-.8-1.22 3.4 3.4 0 00-1.22-.8c-.37-.14-.97-.31-1.97-.36C15.52 4 15.15 4 12 4zm0 3.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 1.8a3.7 3.7 0 100 7.4 3.7 3.7 0 000-7.4zm5.7-2a1.3 1.3 0 11-2.6 0 1.3 1.3 0 012.6 0z"/></svg>
+          </a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="reveal py-32 px-6 max-w-6xl mx-auto">
-        <div class="glass-card p-12 md:p-20 rounded-[60px] text-center relative overflow-hidden">
-            <div class="relative z-10">
-                <h2 class="text-5xl md:text-7xl font-black mb-8 tracking-tighter uppercase">Let's <span class="text-indigo-500">Connect</span></h2>
-                <p class="text-slate-400 mb-12 max-w-lg mx-auto font-medium text-lg leading-relaxed">Always open to discussions about software architecture, new projects, or cool tech. Reach out below!</p>
-                
-                <div class="flex flex-col items-center gap-6">
-                    <a href="mailto:yadneshsaindane7@gmail.com" class="text-2xl md:text-3xl font-black hover:text-indigo-400 transition-colors tracking-tight underline underline-offset-8 decoration-indigo-500/30">yadneshsaindane7@gmail.com</a>
-                    <div class="flex flex-wrap justify-center gap-4 mt-8">
-                        <a href="https://github.com/yadneshsaindane7-boop" target="_blank" class="p-4 glass-card rounded-2xl hover:bg-indigo-600 transition-all" title="GitHub"><i data-lucide="github" class="w-6 h-6"></i></a>
-                        <a href="http://www.linkedin.com/in/yadneshsaindane0208" target="_blank" class="p-4 glass-card rounded-2xl hover:bg-blue-600 transition-all" title="LinkedIn"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
-                        <a href="https://www.instagram.com/283march" target="_blank" class="p-4 glass-card rounded-2xl hover:bg-pink-600 transition-all" title="Instagram"><i data-lucide="instagram" class="w-6 h-6"></i></a>
-                        <a href="https://wa.me/917219166304" target="_blank" class="p-4 glass-card rounded-2xl hover:bg-emerald-600 transition-all" title="WhatsApp"><i data-lucide="message-circle" class="w-6 h-6"></i></a>
-                        <a href="tel:+917219166304" class="p-4 glass-card rounded-2xl hover:bg-emerald-600 transition-all" title="Call Me"><i data-lucide="phone" class="w-6 h-6"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="absolute -top-32 -left-32 w-96 h-96 bg-indigo-600/10 blur-[100px] rounded-full"></div>
-            <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-emerald-600/10 blur-[100px] rounded-full"></div>
-        </div>
-    </section>
+</main>
 
-    <!-- Footer -->
-    <footer class="py-16 px-6 border-t border-slate-900 text-center">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center font-black text-white italic">Y</div>
-                <span class="text-lg font-black tracking-tighter uppercase">Yadnesh Saindane.</span>
-            </div>
-            <p class="text-slate-600 text-[10px] font-black uppercase tracking-[0.4em]">
-                © 2026 Hibro-Labs Production • Nashik, Maharashtra
-            </p>
-        </div>
-    </footer>
+<!-- ===========================================================================
+     FOOTER
+     =========================================================================== -->
+<footer class="site-footer">
+  <p>Yadnesh Saindane &copy; <span id="currentYear">2026</span></p>
+  <p class="site-footer__msg">Crafted at the intersection of logical systems and creative literature.</p>
+  <button class="back-to-top magnetic" id="backToTop" aria-label="Back to top">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 9.5L8 4.5L13 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</footer>
 
-    <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-
-        // Optimized Reveal Function
-        function reveal() {
-            const reveals = document.querySelectorAll(".reveal");
-            for (let i = 0; i < reveals.length; i++) {
-                const windowHeight = window.innerHeight;
-                const elementTop = reveals[i].getBoundingClientRect().top;
-                const elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-
-        // Run on scroll and load
-        window.addEventListener("scroll", reveal);
-        window.addEventListener("load", () => {
-            setTimeout(reveal, 100);
-            
-            // Safety: Force visible after 2 seconds if still hidden
-            setTimeout(() => {
-                document.querySelectorAll(".reveal").forEach(el => el.classList.add("active"));
-            }, 2000);
-        });
-
-        // Add smooth hover to skill cards
-        const skills = document.querySelectorAll('.skill-badge');
-        skills.forEach((skill, index) => {
-            skill.style.transitionDelay = `${index * 30}ms`;
-        });
-    </script>
+<script src="script.js"></script>
 </body>
 </html>
